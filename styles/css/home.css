@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+/* ------- Global variables so mixins can communicate with one another ------ */
+/* --------------------------------- Mixins --------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-family: "Exo 2", sans-serif;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  text-align: center;
+}
+
+button {
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+body {
+  background-image: url("/luizffgv/assets/pexels/pexels-pixabay-267684.jpg");
+  background-size: cover;
+}
+
+main {
+  background-color: #dfdfdf;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.25rem #000f, 0 0 1rem #0005;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  width: fit-content;
+}
+
+/*# sourceMappingURL=home.css.map */

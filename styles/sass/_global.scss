@@ -1,0 +1,31 @@
+@use "fonts";
+@use "mixins" as *;
+@use "constants";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  @include full-viewport-h;
+}
+
+body {
+  @include color-text;
+
+  display: flex;
+  flex-direction: column;
+  font-family: "Exo 2", sans-serif;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  text-align: center;
+}
+
+button {
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

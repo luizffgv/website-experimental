@@ -1,0 +1,104 @@
+@use "mixins" as *;
+@use "animations/animations";
+@use "global";
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  touch-action: none;
+}
+
+body {
+  @extend .color-change;
+
+  height: 1300vh;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    &-thumb {
+      border: none;
+      border-radius: 0;
+      margin-top: 150px;
+      background-color: white;
+    }
+  }
+}
+
+h1,
+p {
+  &:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
+}
+
+i {
+  &#goto-website,
+  &.large {
+    font-size: min(10vh, 10vw);
+  }
+}
+
+button {
+  &.floating {
+    position: fixed;
+    z-index: 1;
+  }
+
+  &#prev {
+    bottom: 10vh;
+    right: 2em;
+    transform: translateY(-250%);
+  }
+
+  &#next {
+    bottom: 10vh;
+    right: 2em;
+    transform: translateY(150%);
+  }
+
+  &#fullscreen {
+    top: 2em;
+    right: 2em;
+  }
+}
+
+.page {
+  @include full-viewport-h;
+  @include full-viewport-w;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  & > h1,
+  & > .passthrough > h1 {
+    font-size: min(7.5vw, 7.5vh);
+  }
+
+  & > p,
+  & > .passthrough > p {
+    font-size: min(5vw, 5vh);
+  }
+
+  &#page-4 {
+    a {
+      color: inherit;
+    }
+  }
+}
+
+.scroll-snap {
+  visibility: none;
+  position: absolute;
+
+  scroll-snap-align: start;
+}
+
+#welcome-msg {
+  font-size: min(5vw, 5vh);
+}

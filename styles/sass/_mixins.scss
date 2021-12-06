@@ -1,0 +1,107 @@
+@use "sass:map";
+@use "sass:color";
+
+@use "colors";
+@use "constants";
+@use "mixins_internal";
+
+/* --------------------------------- Mixins --------------------------------- */
+
+// Gives the element 100% height and border-box sizing
+@mixin fullheight {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+// Gives the element 100% width and border-box sizing
+@mixin fullwidth {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// Gives the element full viewport height
+@mixin full-viewport-h() {
+  height: 100vh;
+}
+
+// Gives the element full viewport width
+@mixin full-viewport-w() {
+  width: 100vw;
+}
+
+// Centers the element's text
+@mixin text-center {
+  text-align: center;
+}
+
+// Scales the element's text. $factor can be "small", "medium" (default), or "large".
+@mixin text-scale($factor: "medium") {
+  font-size: map.get(
+    (
+      "small": constants.$text-small-scale,
+      "medium": constants.$text-normal-scale,
+      "large": constants.$text-large-scale,
+      "huge": constants.$text-huge-scale,
+    ),
+    $factor
+  );
+}
+
+// Gives the element's background a default background color
+@mixin bg-default {
+  mixins_internal.$bg-color-current: colors.$bg;
+  background-color: colors.$bg;
+}
+
+// Gives the elements's background a color based on its box nesting depth
+//  ($level).
+// Rule of thumb: $level should be the number of parent elements that use any of
+//  the following mixins:
+//  - bg-box
+//  - box
+@mixin bg-box($level: 0) {
+  mixins_internal.$bg-color-current: colors.getBoxBg($level);
+  background-color: mixins_internal.$bg-color-current;
+}
+
+// Colors the element with a neutral text color
+@mixin color-text {
+  color: colors.$text;
+}
+
+// Colors the element with a neutral text color
+@mixin color-text-invert {
+  color: color.invert(colors.$text);
+}
+
+// Colors the element with a strong text color
+@mixin color-text-strong {
+  color: colors.$text-strong;
+}
+
+// Colors the element with a weak text color
+@mixin color-text-weak {
+  color: colors.$text-weak;
+}
+
+// Gives the element a curved box look
+@mixin box($level: 1) {
+  @include bg-box($level);
+
+  border-radius: constants.$box-border-radius;
+  box-shadow: 0 0 0.25rem #000f, 0 0 1rem #0005;
+  box-sizing: border-box;
+  padding: constants.$box-padding;
+}
+
+// Makes an element translucent. $color doesn't need to be specified if one of
+//  the following mixins are used:
+//  - box
+//  - bg-*
+@mixin translucent(
+  $color: mixins_internal.$bg-color-current,
+  $alpha-scale: -75%
+) {
+  background-color: color.scale($color, $alpha: $alpha-scale);
+  backdrop-filter: blur(0.5rem);
+}

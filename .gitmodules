@@ -1,0 +1,3 @@
+[submodule "vendor/ScrollMagic"]
+	path = vendor/ScrollMagic
+	url = https://github.com/janpaepke/ScrollMagic

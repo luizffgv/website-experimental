@@ -1,0 +1,14 @@
+@use "colors" with ($text: black);
+@use "global";
+@use "mixins" as *;
+
+body {
+  background-image: url("/luizffgv/assets/pexels/pexels-pixabay-267684.jpg");
+  background-size: cover;
+}
+
+main {
+  @include box(0);
+
+  width: fit-content;
+}
