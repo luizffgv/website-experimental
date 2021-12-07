@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&family=Share+Tech+Mono&display=swap");
 /* ------- Global variables so mixins can communicate with one another ------ */
 /* --------------------------------- Mixins --------------------------------- */
 /* ----------------------------------------------
@@ -119,14 +119,23 @@ html {
 }
 
 body {
-  color: #ebebeb;
-  display: flex;
-  flex-direction: column;
-  font-family: "Exo 2", sans-serif;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-  text-align: center;
+  color: #eeeeee;
+  background-color: #222831;
+}
+
+code {
+  font-family: "Share Tech Mono", monospace;
+}
+
+a {
+  color: #00adb5;
+}
+a:hover {
+  color: #eeeeee;
+}
+
+pre {
+  text-align: left;
 }
 
 button {
@@ -143,16 +152,22 @@ html {
 }
 
 body {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: "Exo 2", sans-serif;
   height: 1300vh;
+  justify-content: center;
 }
 body::-webkit-scrollbar {
   width: 5px;
 }
 body::-webkit-scrollbar-thumb {
-  border: none;
-  border-radius: 0;
-  margin-top: 150px;
   background-color: white;
+  border-radius: 0;
+  border: none;
+  margin-top: 150px;
 }
 
 h1:not(:last-child),
@@ -179,20 +194,20 @@ button#next {
   transform: translateY(150%);
 }
 button#fullscreen {
-  top: 2em;
   right: 2em;
+  top: 2em;
 }
 
 .page {
   height: 100vh;
   width: 100vw;
+  left: 0;
   position: fixed;
   top: 0;
-  left: 0;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .page > h1, .page > .passthrough > h1 {
   font-size: min(7.5vw, 7.5vh);
@@ -205,8 +220,8 @@ button#fullscreen {
 }
 
 .scroll-snap {
-  visibility: none;
   position: absolute;
+  visibility: none;
   scroll-snap-align: start;
 }
 

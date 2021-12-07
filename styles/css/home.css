@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&family=Share+Tech+Mono&display=swap");
 /* ------- Global variables so mixins can communicate with one another ------ */
 /* --------------------------------- Mixins --------------------------------- */
 * {
@@ -11,14 +11,23 @@ html {
 }
 
 body {
-  color: black;
-  display: flex;
-  flex-direction: column;
-  font-family: "Exo 2", sans-serif;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-  text-align: center;
+  color: #eeeeee;
+  background-color: #222831;
+}
+
+code, .card-code {
+  font-family: "Share Tech Mono", monospace;
+}
+
+a {
+  color: #00adb5;
+}
+a:hover {
+  color: #eeeeee;
+}
+
+pre {
+  text-align: left;
 }
 
 button {
@@ -29,17 +38,90 @@ button {
 }
 
 body {
-  background-image: url("/luizffgv/assets/pexels/pexels-pixabay-267684.webp");
-  background-size: cover;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: "Exo 2", sans-serif;
+  justify-content: center;
+  min-height: 100%;
 }
 
-main {
-  background-color: #dfdfdf;
-  border-radius: 1rem;
+.card {
+  background-color: #393e46;
+  border-radius: 12px;
+  border: 1px solid #393e46;
   box-shadow: 0 0 0.25rem #000f, 0 0 1rem #0005;
+}
+.card-code {
+  padding: 1em;
+  background-color: #0d1117;
+}
+.card-code pre {
+  white-space: pre-wrap;
+}
+
+.md-header {
+  color: #1f6feb;
+}
+
+.md-bullet {
+  color: #f2cc60;
+}
+
+#code {
   box-sizing: border-box;
-  padding: 0.5rem;
-  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen {
+  @media not all and (max-aspect-ratio: 1/1) {
+    @media not all and (max-width: 512px) {
+      #code {
+        width: 66.6666666667%;
+      }
+    }
+  }
+}
+@media screen and (max-aspect-ratio: 1/1), screen and (max-width: 512px) {
+  #code {
+    width: 90%;
+  }
+}
+#code-content::before {
+  text-align: center;
+  content: attr(data-title);
+  display: block;
+  margin-bottom: 1em;
+}
+#code-buttons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 2.5em;
+}
+#code-buttons .button {
+  transition: 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+#code-buttons .button::before, #code-buttons .button::after {
+  transition: 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+#code-buttons .button::before {
+  content: "[";
+}
+#code-buttons .button::after {
+  content: "]";
+}
+#code-buttons .button:hover {
+  cursor: pointer;
+}
+#code-buttons .button:hover::before {
+  filter: drop-shadow(0px 0px 4px #eeeeee);
+  padding-right: 1em;
+}
+#code-buttons .button:hover::after {
+  filter: drop-shadow(0px 0px 4px #eeeeee);
+  padding-left: 1em;
 }
 
 /*# sourceMappingURL=home.css.map */

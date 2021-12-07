@@ -1,11 +1,7 @@
 @use "sass:color";
 
-$text: #ebebeb !default;
-$text-strong: color.scale($text, $lightness: -15%) !default;
-$text-weak: color.scale($text, $lightness: 15%) !default;
-$bg: #ebebeb !default;
-
-@function getBoxBg($level: 0) {
-  $level: clamp(0, $level, 19);
-  @return color.scale($bg, $lightness: ($level + 1) * -5%);
-}
+$text: #eeeeee !default;
+$bg: #222831 !default;
+$fg: #393e46 !default;
+$link: #00adb5 !default;
+$link-hover: #eeeeee !default;

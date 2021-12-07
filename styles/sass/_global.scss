@@ -1,6 +1,6 @@
+@use "colors";
 @use "fonts";
 @use "mixins" as *;
-@use "constants";
 
 * {
   margin: 0;
@@ -13,14 +13,19 @@ html {
 
 body {
   @include color-text;
+  @include bg-default;
+}
 
-  display: flex;
-  flex-direction: column;
-  font-family: "Exo 2", sans-serif;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-  text-align: center;
+code {
+  font-family: "Share Tech Mono", monospace;
+}
+
+a {
+  @include link;
+}
+
+pre {
+  text-align: left;
 }
 
 button {
