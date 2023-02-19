@@ -1,0 +1,37 @@
+@use "../global";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+div {
+  width: fit-content;
+  background-color: global.$color-primary;
+  clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 100%, 40px 100%);
+  transition: 0.25s cubic-bezier(0.55, 0.055, 0.675, 0.19),
+    letter-spacing 0.5s ease;
+
+  &:hover {
+    padding-left: 1em;
+    padding-right: 1em;
+    clip-path: polygon(40px 0, 100% 0, calc(100% - 40px) 100%, 0px 100%);
+    letter-spacing: 0.5em;
+  }
+}
+
+h1 {
+  padding-left: 1em;
+  padding-right: 1em;
+  white-space: nowrap;
+  font-family: global.$font-title;
+  font-size: 3em;
+  color: global.$color-text-light;
+}

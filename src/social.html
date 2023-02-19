@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="description"
+      content="Meu nome é Luiz Fernando F. G. Valle, sou um desenvolvedor de software e muito interessado em C++. Veja aqui meus projetos."
+    />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <a href="index.html">Profissional</a>
+        <a href="#about">Sobre</a>
+        <a href="#social-networks">Redes sociais</a>
+        <a href="#contact">Contato</a>
+      </nav>
+      <x-toggle id="theme-toggle"></x-toggle>
+      <hr class="separator" />
+    </header>
+    <main>
+      <section id="about">
+        <x-hero content="Sobre mim"></x-hero>
+        <p>
+          Olá! Meu nome é Luiz Fernando e tenho <span id="age"></span> anos.
+        </p>
+        <p>
+          Meus hobbies principais são programar e gerar imagens com Stable
+          Diffusion.
+        </p>
+        <p>Sou absolutamente obcecado com o mercado de hardware.</p>
+      </section>
+      <section id="social-networks">
+        <x-hero content="Redes sociais"></x-hero>
+        <div>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://steamcommunity.com/id/jshkguncat"
+          >
+            <ion-icon name="logo-steam"></ion-icon>
+          </a>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://discord.com/users/164394713124831233"
+          >
+            <ion-icon name="logo-discord"></ion-icon>
+          </a>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://www.instagram.com/luizffgv/"
+          >
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://www.github.com/luizffgv/"
+          >
+            <ion-icon name="logo-github"></ion-icon>
+          </a>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://www.reddit.com/u/cateanddogew/"
+          >
+            <ion-icon name="logo-reddit"></ion-icon>
+          </a>
+        </div>
+      </section>
+      <section id="hardware">
+        <x-hero content="Meu hardware"></x-hero>
+        <div id="hardware-lists">
+          <ul aria-label="PC">
+            <li><strong>GPU:</strong> RX 6700 XT</li>
+            <li><strong>CPU:</strong> Ryzen 5 1600 <small>3.8GHz OC</small></li>
+            <li>
+              <strong>RAM:</strong> 16GB <small>2x8</small> 2400MHz CL14
+              <small>3000MHz OC</small>
+            </li>
+            <li><strong>MOBO:</strong> ASRock AB350M</li>
+            <li><strong>SSD NVMe:</strong> WD SN520 512GB</li>
+            <li><strong>SSD SATA:</strong> Kingston A400 240GB</li>
+            <li><strong>HDDs:</strong> 1TB + 500GB</li>
+          </ul>
+          <ul aria-label="Perifericos">
+            <li>
+              <strong>Monitor:</strong> Alienware AW2518HF <small>240Hz</small>
+            </li>
+            <li>
+              <strong>Mouse:</strong> Logitech G203 <small>com Corepad</small>
+            </li>
+            <li><strong>Mousepad:</strong> Logitech G440</li>
+            <li><strong>Teclado:</strong> K552 RGB</li>
+            <li><strong>Headset:</strong> Cooler Master MH752</li>
+            <li>
+              <strong>Headset VR:</strong> Meta Quest 2 <small>128GB</small>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://www.userbenchmark.com/UserRun/59263127"
+          >
+            userbenchmark
+          </a>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://www.3dmark.com/3dm/89272746"
+          >
+            3DMark Time Spy
+          </a>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href=" https://pcpartpicker.com/list/MTTpsL"
+          >
+            pcpartpicker
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <hr class="separator to-inv" />
+      <section id="contact">
+        <x-hero content="Contato"></x-hero>
+        <address>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://mailhide.io/pt/e/h7s3pMaC"
+          >
+            <ion-icon name="mail"></ion-icon>
+          </a>
+          <a href="tel:+5533991262949">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+          </a>
+        </address>
+      </section>
+    </footer>
+  </body>
+</html>

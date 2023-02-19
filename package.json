@@ -1,0 +1,40 @@
+{
+  "name": "luizf.dev.br",
+  "version": "1.0.0",
+  "description": "Source code for the luizf.dev.br website",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "start:dev": "webpack serve --static dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizffgv/luizffgv.git"
+  },
+  "author": "Luiz Fernando F. G. Valle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luizffgv/luizffgv/issues"
+  },
+  "homepage": "https://github.com/luizffgv/luizffgv#readme",
+  "dependencies": {
+    "lit": "^2.2.8",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "sass": "^1.54.2",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "to-string-loader": "^1.2.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1",
+    "webpack-dev-server": "^4.9.3"
+  }
+}

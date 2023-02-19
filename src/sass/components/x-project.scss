@@ -1,0 +1,84 @@
+@use "../global";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:host {
+  perspective: 512px;
+  flex-grow: 1;
+  margin: 10px;
+}
+
+article {
+  @include global.curved;
+
+  background-color: global.$color-bg;
+  box-shadow: 5px 5px 5px global.$color-shadow,
+    -5px -5px 5px global.$color-shadow-soft;
+  padding: 1.5em;
+  box-sizing: border-box;
+  transition: 0.5s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transform: translateZ(20px);
+  }
+}
+
+i {
+  color: red;
+}
+
+h1 {
+  margin-right: 1em;
+  font-family: "Koulen", cursive;
+  color: global.$color-primary;
+  line-height: 1;
+}
+
+.devicon {
+  height: 1.5em;
+}
+
+#title-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#tools {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: "Koulen", cursive;
+  color: global.$color-weak;
+
+  &-icons {
+    line-height: 1;
+  }
+
+  span {
+    margin-right: 0.5em;
+  }
+}
+
+#desc {
+  max-width: 20em;
+}
+
+#anchors {
+  a {
+    @include global.button;
+  }
+}
+
+#license {
+  font-size: 0.5em;
+  color: global.$color-weak;
+}
