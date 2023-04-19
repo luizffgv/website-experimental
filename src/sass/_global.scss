@@ -111,7 +111,12 @@ a {
 }
 
 x-hero {
-  z-index: 2;
+  // Render ontop of navbar (purely aesthetic choice)
+  // This isn't appropriate in portrait mode since it likely overlaps navigation buttons
+  // This heuristic isn't perfect but covers many cases
+  @media (min-aspect-ratio: 1) {
+    z-index: 2;
+  }
 }
 
 hr.separator {
