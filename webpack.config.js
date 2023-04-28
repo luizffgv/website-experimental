@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const pages = ["index", "social"];
 const htmlplugins = [];
@@ -25,7 +26,12 @@ pages.forEach((page) => {
 module.exports = {
   mode: "development",
   entry: entries,
-  plugins: htmlplugins,
+  plugins: [
+    htmlplugins,
+    new CopyPlugin({
+      patterns: ["CNAME"],
+    }),
+  ].flat(),
   module: {
     rules: [
       {

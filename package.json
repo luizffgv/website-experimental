@@ -22,6 +22,7 @@
   "homepage": "https://github.com/luizffgv/luizffgv#readme",
   "dependencies": {
     "lit": "^2.2.8",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
     "sass": "^1.54.2",
