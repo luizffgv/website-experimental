@@ -1,4 +1,5 @@
 @use "../global";
+@use "../card";
 
 * {
   padding: 0;
@@ -12,13 +13,8 @@
 }
 
 article {
-  @include global.curved;
+  @include card.card;
 
-  background-color: global.$color-bg;
-  box-shadow: 5px 5px 5px global.$color-shadow,
-    -5px -5px 5px global.$color-shadow-soft;
-  padding: 1.5em;
-  box-sizing: border-box;
   transition: 0.5s ease;
   height: 100%;
   display: flex;
