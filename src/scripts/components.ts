@@ -114,6 +114,86 @@ export class Project extends LitElement {
   }
 }
 
+/**
+ * Information about a certificate
+ */
+@customElement("x-cert")
+export class Cert extends LitElement {
+  /**
+   * Name of the certificate
+   */
+  @property()
+  name?: string;
+
+  /**
+   * Certificate issuer
+   */
+  @property()
+  issuer?: string;
+
+  /**
+   * Date of the certificate
+   */
+  @property()
+  date?: string;
+
+  /**
+   * URL to the certificate
+   */
+  @property()
+  url?: string;
+
+  static styles = unsafeCSS(require("Styles/components/x-cert.scss"));
+
+  /**
+   * @returns The HTML for the name
+   */
+  private getName() {
+    return this.name;
+  }
+
+  /**
+   * @returns The HTML for the issuer
+   */
+  private getIssuer() {
+    if (this.issuer) return html`<p>Por <strong>${this.issuer}</strong></p>`;
+
+    return html`<p></p>`;
+  }
+
+  /**
+   * @returns The HTML for the date
+   */
+  private getDate() {
+    if (this.date)
+      return html`<p>
+        em <strong>${new Date(this.date).toLocaleDateString("pt-BR")}</strong>
+      </p>`;
+
+    return html`<p></p>`;
+  }
+
+  /**
+   * @returns The HTML for the button to view the certificate
+   */
+  private getAnchor() {
+    if (this.url)
+      return html`
+        <a hrel="noopener noreferrer" target="_blank" href=${this.url}
+          >Verificar</a
+        >
+      `;
+  }
+
+  render() {
+    return html`<article>
+      <h1>${this.getName()}</h1>
+      <div id="subtitle">${this.getIssuer()} ${this.getDate()}</div>
+      ${this.getAnchor()}
+    </article>`;
+  }
+}
+
 @customElement("x-hero")
 export class Hero extends LitElement {
   @property()
