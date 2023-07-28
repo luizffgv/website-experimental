@@ -5,7 +5,7 @@ const entries: NavigationBarEntry[] = [
   {
     name: "Projetos",
     url: "/projetos.html",
-    urlAlternatives: ["/projetos.html"],
+    urlAlternatives: ["/projetos"],
   },
 ];
 
