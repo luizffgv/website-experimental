@@ -1,0 +1,130 @@
+@use "Styles/mixins";
+@use "variables" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+@import url("https://fonts.googleapis.com/css2?family=Exo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis&display=swap");
+
+:root {
+  background-color: $color-bg;
+
+  font-family: $font-regular;
+  font-size: $font-size;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  gap: $button-gap;
+
+  padding: $button-padding;
+
+  font-size: $button-font-size;
+
+  border: none;
+  border-radius: $button-border-radius;
+
+  background: $button-color-bg;
+  color: $button-color-fg;
+}
+
+h1 {
+  @include mixins.shadow-soft;
+
+  padding: $h1-padding;
+
+  font-family: $font-display;
+  font-size: $h1-font-size;
+  font-weight: 700;
+  line-height: 23px; // Replace by leading-trim: both; when available
+
+  border-radius: 99999px;
+
+  background-color: $h1-color-bg;
+  color: $h1-color-fg;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label.checkbox {
+  padding: $padding-half $padding;
+
+  border-radius: 99999px;
+
+  background-color: $color-checkbox-bg;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: all 250ms ease;
+  transition-property: background-color, color;
+
+  &:has(input:checked) {
+    background-color: $color-primary;
+    color: $color-fg-light;
+  }
+}
+
+p:not(:first-child) {
+  margin-top: $p-margin-top;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: $margin-section;
+}
+
+.horizontal > section:not(:first-child) {
+  margin-left: $margin-section;
+}
+
+table {
+  border-spacing: $margin-close;
+}
+
+ul {
+  margin-top: $ul-margin-top;
+
+  list-style-position: inside;
+}
+
+.button {
+  @extend button;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+*::-webkit-scrollbar {
+  width: $scrollbar-width;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $scrollbar-thumb-color;
+}

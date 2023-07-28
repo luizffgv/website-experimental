@@ -3,62 +3,128 @@ const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
-const pages = ["index", "social"];
-const htmlplugins = [];
-const entries = {};
+/* ----------------------- Populate pages and entries ----------------------- */
 
-pages.forEach((page) => {
-  [".js", ".ts", ".tsx"].forEach((ext) => {
-    const file = path.resolve(__dirname, "src/scripts", page + ext);
-    if (fs.existsSync(file)) entries[page] = file;
-  });
+/**
+ * Represents an HTML page.
+ */
+class Page {
+  /**
+   * Constructs a {@link Page}.
+   *
+   * @param name {string} - Name of the page.
+   */
+  constructor(name) {
+    /**
+     * Name of the page.
+     * @type {string}
+     */
+    this.name = name;
+  }
 
-  htmlplugins.push(
+  /**
+   * Absolute path to the page directory.
+   */
+  get path() {
+    return path.join(__dirname, `src/pages/${this.name}`);
+  }
+
+  /**
+   * Absolute path to the page's entry point.
+   */
+  get entry() {
+    return `${this.path}/entry.ts`;
+  }
+
+  /**
+   * Absolute path to the page's HTML template.
+   */
+  get html() {
+    return `${this.path}/template.html`;
+  }
+
+  /**
+   * Page title.
+   */
+  get title() {
+    return `Luiz Fernando — ${this.name}`;
+  }
+}
+
+const pages = fs
+  .readdirSync(path.join(__dirname, "src/pages"))
+  .map((name) => new Page(name));
+
+const entries = pages
+  .map((page) => ({
+    [page.name]: page.entry,
+  }))
+  .reduce((lhs, rhs) => Object.assign(lhs, rhs));
+
+/* ----------------------------- Create plugins ----------------------------- */
+
+const htmlPlugins = pages.map(
+  (page) =>
     new HtmlWebpackPlugin({
-      title: page,
-      template: path.resolve(__dirname, `src/${page}.html`),
-      filename: page + ".html",
-      chunks: [page],
+      title: page.title,
+      template: page.html,
+      filename: `${page.name}.html`,
+      chunks: [page.name],
     })
-  );
-});
+);
+
+const cnamePlugin = new CopyPlugin({ patterns: ["CNAME"] });
+
+const plugins = [...htmlPlugins, cnamePlugin];
+
+/* ----------------------------- Webpack config ----------------------------- */
 
 module.exports = {
   mode: "development",
   entry: entries,
-  plugins: [
-    htmlplugins,
-    new CopyPlugin({
-      patterns: ["CNAME"],
-    }),
-  ].flat(),
+  plugins: plugins,
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
       {
+        test: /\.scss$/,
         oneOf: [
           {
-            test: /[^_].*\.s[ac]ss$/i,
+            // Imports the CSS as a string
+            resourceQuery: /string/,
             use: ["to-string-loader", "css-loader", "sass-loader"],
-            include: [path.resolve(__dirname, "src/sass/components/")],
           },
           {
-            test: /[^_].*\.s[ac]ss$/i,
+            // Applies the style sheet to the document
+            resourceQuery: /apply/,
             use: ["style-loader", "css-loader", "sass-loader"],
+          },
+          {
+            // Imports a CSSStyleSheet object
+            resourceQuery: /sheet/,
+            use: [
+              {
+                loader: "css-loader",
+                options: { exportType: "css-style-sheet" },
+              },
+              "sass-loader",
+            ],
           },
         ],
       },
     ],
   },
   resolve: {
+    extensions: [".ts", ".js"],
     alias: {
-      Styles: path.resolve(__dirname, "src/sass/"),
+      Components: path.resolve(__dirname, "src/components/"),
+      Scripts: path.resolve(__dirname, "src/scripts/"),
+      Styles: path.resolve(__dirname, "src/styles/"),
     },
-    extensions: [".tsx", ".ts", ".js", ".scss"],
   },
   output: {
     filename: "[name].js",
