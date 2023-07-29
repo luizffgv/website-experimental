@@ -31,10 +31,9 @@
 
 #projects {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: flex-start;
-  flex-wrap: wrap;
   gap: 32px;
 
   width: fit-content;
@@ -43,8 +42,7 @@
 
 #tags {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 16px;
 
   max-height: 50vh;
