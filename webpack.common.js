@@ -3,6 +3,21 @@ const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
+const scriptsPath = path.join(__dirname, "src/scripts");
+const globalScriptsPath = path.join(scriptsPath, "global");
+
+/**
+ * Name of the global entry point.
+ */
+const globalEntryName = "global";
+
+/**
+ * Scripts that will run before any other entries in all non-isolated pages.
+ */
+const globalScripts = fs
+  .readdirSync(globalScriptsPath)
+  .map((script) => path.join(globalScriptsPath, script));
+
 /* ----------------------- Populate pages and entries ----------------------- */
 
 /**
@@ -10,16 +25,26 @@ const CopyPlugin = require("copy-webpack-plugin");
  */
 class Page {
   /**
+   * Whether the page includes the global entries.
+   *
+   * @type {boolean}
+   */
+  #isolated;
+
+  /**
    * Constructs a {@link Page}.
    *
-   * @param name {string} - Name of the page.
+   * @param {string} name - Name of the page.
+   * @param {boolean} [isolated] - Whether the page includes the global scripts.
    */
-  constructor(name) {
+  constructor(name, isolated) {
     /**
      * Name of the page.
      * @type {string}
      */
     this.name = name;
+
+    this.#isolated = !!isolated;
   }
 
   /**
@@ -49,17 +74,38 @@ class Page {
   get title() {
     return `Luiz Fernando — ${this.name}`;
   }
+
+  /**
+   * Page chunks.
+   */
+  get chunks() {
+    const chunks = [];
+    if (!this.#isolated) chunks.push(globalEntryName);
+    chunks.push(this.name);
+
+    return chunks;
+  }
 }
 
 const pages = fs
   .readdirSync(path.join(__dirname, "src/pages"))
   .map((name) => new Page(name));
 
+/**
+ * @type {{[name: string]: import("webpack").Entry}}
+ */
 const entries = pages
   .map((page) => ({
     [page.name]: page.entry,
   }))
   .reduce((lhs, rhs) => Object.assign(lhs, rhs));
+
+if (entries[globalEntryName] != undefined)
+  throw new Error(
+    `Entry "${globalEntryName}" is already defined. Do not use "${globalEntryName}" as a page name.`
+  );
+
+entries[globalEntryName] = globalScripts;
 
 /* ----------------------------- Create plugins ----------------------------- */
 
@@ -69,7 +115,8 @@ const htmlPlugins = pages.map(
       title: page.title,
       template: page.html,
       filename: `${page.name}.html`,
-      chunks: [page.name],
+      chunks: page.chunks,
+      chunksSortMode: "manual",
     })
 );
 

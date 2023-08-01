@@ -1,12 +1,9 @@
 import "Styles/global.scss?apply";
 import "./styles.scss?apply";
-import { throwIfNull, trySpecify } from "@luizffgv/ts-conversions";
-import NavigationBar from "Components/NavigationBar";
-import entries from "Scripts/navbar-entries";
+import { throwIfNull } from "@luizffgv/ts-conversions";
 import { html } from "Scripts/tags";
 import { add } from "Scripts/functional";
 import rawProjects from "./projects.json";
-import * as bubbles from "Scripts/bubbles";
 
 /**
  * Project tag.
@@ -193,11 +190,6 @@ const tags = new Set(
 const requiredTags: Set<string> = new Set();
 
 addEventListener("DOMContentLoaded", () => {
-  bubbles.addToPage();
-
-  const navbar = trySpecify(document.getElementById("navbar"), NavigationBar);
-  navbar.addEntries(...entries);
-
   refreshProjects();
 
   const tagsElement = throwIfNull(document.getElementById("tags"));
