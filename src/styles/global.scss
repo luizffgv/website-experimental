@@ -18,7 +18,16 @@
 }
 
 a {
+  display: flex;
+  align-items: center;
+  gap: $margin-close;
+
+  color: $color-primary;
   text-decoration: none;
+}
+
+address {
+  font-style: inherit;
 }
 
 button {
