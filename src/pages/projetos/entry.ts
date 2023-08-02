@@ -1,4 +1,3 @@
-import "Styles/global.scss?apply";
 import "./styles.scss?apply";
 import { throwIfNull } from "@luizffgv/ts-conversions";
 import { html } from "Scripts/tags";
