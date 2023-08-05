@@ -113,7 +113,7 @@ class ProjectQueryBuilder {
    *
    * A project will only be included if it has **all** of the tags.
    */
-  withTags(...tags: Tag[]) {
+  withTags(...tags: Tag[]): this {
     for (const tag of tags) this.#tags.add(tag);
 
     return this;
@@ -167,7 +167,7 @@ function createTagElement(tag: Tag): HTMLLabelElement {
  *
  * Must be called for filters to apply.
  */
-function refreshProjects() {
+function refreshProjects(): void {
   const projectsElement = throwIfNull(document.getElementById("projects"));
 
   const filteredProjects = new ProjectQueryBuilder(projects)

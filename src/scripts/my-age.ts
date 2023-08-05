@@ -9,7 +9,7 @@ export function getMyAge(): number {
 /**
  * Applies my age to an element as its `textContent`.
  */
-export function applyMyAge(selector: string) {
+export function applyMyAge(selector: string): void {
   const myAge = getMyAge();
 
   for (const element of document.querySelectorAll(selector))

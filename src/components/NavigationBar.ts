@@ -87,7 +87,7 @@ export default class NavigationBar extends HTMLElement {
    *
    * @param entries - Entries to add.
    */
-  addEntries(...entries: NavigationBarEntry[]) {
+  addEntries(...entries: NavigationBarEntry[]): void {
     this.#entries.append(...entries.map(NavigationBar.#makeEntryElement));
 
     for (const { name, url, urlAlternatives } of entries) {

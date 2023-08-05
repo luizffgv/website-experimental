@@ -72,7 +72,7 @@ export class Bubbles {
     this.start();
   }
 
-  #step(timestamp: DOMHighResTimeStamp) {
+  #step(timestamp: DOMHighResTimeStamp): void {
     if (this.#stop) return;
 
     const width = this.#element.clientWidth;
@@ -134,18 +134,18 @@ export class Bubbles {
     requestAnimationFrame(this.#step.bind(this));
   }
 
-  start() {
+  start(): void {
     this.#stop = false;
     requestAnimationFrame(this.#step.bind(this));
   }
 
-  stop() {
+  stop(): void {
     this.#stop = true;
     this.#bubbles = [];
   }
 }
 
-export function addToPage() {
+export function addToPage(): void {
   const canvas = document.createElement("canvas");
 
   canvas.style.width = "100vw";
