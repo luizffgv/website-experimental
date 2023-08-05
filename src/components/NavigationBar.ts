@@ -44,6 +44,23 @@ export default class NavigationBar extends HTMLElement {
   static styles = [style];
 
   /**
+   * Generates the HTMLElement for an entry.
+   *
+   * @param entry - Entry to generate HTML from.
+   */
+  static #makeEntryElement(entry: NavigationBarEntry): HTMLElement {
+    const anchor = document.createElement("a");
+    anchor.href = entry.url;
+    anchor.textContent = entry.name;
+
+    const container = document.createElement("div");
+    container.id = entry.name.replace(" ", "_");
+    container.appendChild(anchor);
+
+    return container;
+  }
+
+  /**
    * Creates a new {@link NavigationBar}
    */
   constructor() {
@@ -62,17 +79,6 @@ export default class NavigationBar extends HTMLElement {
   }
 
   /**
-   * Generates the HTML for an entry.
-   *
-   * @param entry - Entry to generate HTML from.
-   */
-  #makeEntryHTML(entry: NavigationBarEntry) {
-    return html`<div id=${entry.name.replace(" ", "_")}>
-      <a href="${entry.url}">${entry.name}</a>
-    </div>`;
-  }
-
-  /**
    * Adds entries to the navigation bar.
    *
    * @remarks
@@ -82,7 +88,7 @@ export default class NavigationBar extends HTMLElement {
    * @param entries - Entries to add.
    */
   addEntries(...entries: NavigationBarEntry[]) {
-    this.#entries.innerHTML += entries.map(this.#makeEntryHTML).reduce(add);
+    this.#entries.append(...entries.map(NavigationBar.#makeEntryElement));
 
     for (const { name, url, urlAlternatives } of entries) {
       const alternatives = [url, urlAlternatives].flat();
