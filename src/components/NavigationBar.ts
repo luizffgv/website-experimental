@@ -1,6 +1,6 @@
 import { html } from "Scripts/tags";
 import style from "Components/NavigationBar.scss?sheet";
-import { throwIfNull } from "@luizffgv/ts-conversions";
+import { throwIfNull, trySpecify } from "@luizffgv/ts-conversions";
 import { add } from "Scripts/functional";
 
 /**
@@ -57,8 +57,8 @@ export default class NavigationBar extends HTMLElement {
   /**
    * The element containing the entries.
    */
-  get #entries() {
-    return throwIfNull(throwIfNull(this.shadowRoot).children[0]);
+  get #entries(): HTMLElement {
+    return trySpecify(throwIfNull(this.shadowRoot).children[0], HTMLElement);
   }
 
   /**
