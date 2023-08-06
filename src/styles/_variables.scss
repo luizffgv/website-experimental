@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:color";
 
 // NOTE All margin, padding, border and other sizing variables should use px as
 // unit.
@@ -55,6 +56,7 @@ $button-font-size: $font-size;
 $button-border-radius: $border-radius-small;
 $button-color-bg: $color-primary;
 $button-color-fg: $color-fg-light;
+$button-color-bg-hover: color.scale($button-color-bg, $lightness: 15%);
 $button-padding: $padding-half $padding;
 $button-gap: $margin-close;
 

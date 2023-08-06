@@ -49,6 +49,18 @@ button {
 
   background: $button-color-bg;
   color: $button-color-fg;
+
+  transition: background-color 250ms ease;
+
+  &:focus {
+    @include mixins.glow-primary;
+
+    outline: none;
+  }
+
+  &:hover {
+    background: $button-color-bg-hover;
+  }
 }
 
 h1 {
