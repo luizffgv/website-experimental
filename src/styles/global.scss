@@ -30,6 +30,11 @@ address {
   font-style: inherit;
 }
 
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
 button {
   display: flex;
   align-items: center;

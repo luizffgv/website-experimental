@@ -1,5 +1,8 @@
 @use "sass:math";
 
+// NOTE All margin, padding, border and other sizing variables should use px as
+// unit.
+
 $color-prim-white: #ffffff;
 $color-prim-grey: #eaeaea;
 $color-prim-light: #f8f8f8;
@@ -40,9 +43,9 @@ $color-navbar-bg: $color-prim-dark;
 $color-navbar-fg: $color-fg-inv;
 $color-navbar-selected: $color-primary;
 
-$navbar-padding: $margin-regular 0px;
+$navbar-padding: $margin-regular;
 $navbar-font-size: 24px;
-$navbar-gap: 64px;
+$navbar-gap: 32px 64px;
 
 /* --------------------------------- Project -------------------------------- */
 $color-project-bg: $color-bg-lighter;
