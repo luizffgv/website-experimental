@@ -102,6 +102,12 @@
     "repository": "https://github.com/luizffgv/SoR-pt-BR"
   },
   {
+    "name": "Spirit Box",
+    "description": "Bot para Discord que gera um diário de anotações do jogo Phasmophobia, para compartilhar suas pistas com seus amigos.",
+    "tags": ["Discord App", "Node.js", "TypeScript"],
+    "wip": true
+  },
+  {
     "name": "TS Conversions",
     "description": "Biblioteca e pacote NPM fornecendo utilitários para realizar conversões seguras ou inseguras e diminuir código boilerplate no TypeScript.",
     "tags": [
