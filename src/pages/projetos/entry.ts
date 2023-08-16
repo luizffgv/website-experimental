@@ -19,6 +19,7 @@ type ProjectRaw = {
   license?: string;
   url?: string;
   repository?: string;
+  wip?: boolean;
 };
 
 /**
@@ -31,6 +32,7 @@ class Project {
   license?: string;
   url?: string;
   repository?: string;
+  wip: boolean;
 
   /**
    * Creates a new {@link Project} from its raw object obtained from JSON.
@@ -42,6 +44,7 @@ class Project {
     if (raw.license != null) this.license = raw.license;
     if (raw.url != null) this.url = raw.url;
     if (raw.repository != null) this.repository = raw.repository;
+    this.wip = raw.wip ?? false;
   }
 
   /**
@@ -58,9 +61,11 @@ class Project {
         <span class="material-symbols-outlined">code</span> Repositório
       </a>`;
 
-    return html`<div class="project">
+    return html`<div class="project ${this.wip ? "project-wip" : ""}">
       <div>
-        <p class="project-name">${this.name}</p>
+        <p class="project-name">
+          ${this.name} ${this.wip ? "(em progresso)" : ""}
+        </p>
         <p class="project-description">${this.description}</p>
       </div>
       <div class="project-buttons">${buttons}</div>

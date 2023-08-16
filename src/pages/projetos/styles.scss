@@ -27,6 +27,10 @@
 
     margin-top: $margin-regular;
   }
+
+  &-wip {
+    opacity: 0.5;
+  }
 }
 
 #projects {
