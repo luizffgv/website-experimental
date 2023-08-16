@@ -61,6 +61,24 @@
     "repository": "https://github.com/luizffgv/Figment"
   },
   {
+    "name": "Globe",
+    "description": "Um site com um globo giratório formado por pontos, te permitindo usar suas próprias imagens como texturas.",
+    "tags": [
+      "GitHub Actions",
+      "GitHub",
+      "HTML",
+      "JavaScript",
+      "Node.js",
+      "Site",
+      "Three.js",
+      "TypeScript",
+      "Webpack"
+    ],
+    "license": "MIT License",
+    "url": "https://globe.luizf.dev",
+    "repository": "https://github.com/luizffgv/globe"
+  },
+  {
     "name": "livro-c",
     "description": "Livro virtual gratuito que pretende trazer uma fonte moderna, confiável e completa para o aprendizado de C.",
     "tags": ["C", "GitHub", "Livro", "mdBook"],
