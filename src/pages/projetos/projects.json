@@ -104,8 +104,9 @@
   {
     "name": "Spirit Box",
     "description": "Bot para Discord que gera um diário de anotações do jogo Phasmophobia, para compartilhar suas pistas com seus amigos.",
-    "tags": ["Discord App", "Node.js", "TypeScript"],
-    "wip": true
+    "tags": ["Discord App", "GitHub", "JavaScript", "Node.js", "TypeScript"],
+    "license": "MIT License",
+    "repository": "https://github.com/luizffgv/spirit-box"
   },
   {
     "name": "TS Conversions",
