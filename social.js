@@ -1,0 +1,1 @@
+(()=>{"use strict";document.addEventListener("DOMContentLoaded",(()=>{!function(t){const e=function(){const t=Date.now()-+new Date(2001,6,1);return Math.floor(t/3154e7)}();for(const n of document.querySelectorAll(t))n.textContent=e.toString()}("#age")}))})();
