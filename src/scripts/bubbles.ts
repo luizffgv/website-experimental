@@ -213,19 +213,14 @@ export function addToPage(): void {
   const fade = document.createElement("div");
   fade.style.position = "absolute";
   fade.style.left = "0";
+  fade.style.top = "0";
   fade.style.width = "100%";
   fade.style.height = "256px";
   fade.style.zIndex = "-1";
   fade.style.background =
     "linear-gradient(to bottom, var(--raiar-color-bg), transparent)";
 
-  const fadeBottom = uncheckedCast<HTMLElement>(fade.cloneNode());
-  fadeBottom.style.rotate = "z 180deg";
-  fadeBottom.style.bottom = "0";
-
-  fade.style.top = "0";
-
-  document.body.append(canvas, fade, fadeBottom);
+  document.body.append(canvas, fade);
 
   new Bubbles(canvas, 1 / 5, "rgb(255, 61, 131)");
 }
