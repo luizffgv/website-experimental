@@ -1,5 +1,223 @@
-@use "Styles/variables" as *;
+@keyframes wiggle {
+  0% {
+    rotate: z 0deg;
+  }
+  25% {
+    rotate: z -1.25deg;
+  }
+  50% {
+    rotate: z 2.5deg;
+  }
+  75% {
+    rotate: z -1.25deg;
+  }
+  100% {
+    rotate: z 0deg;
+  }
+}
 
-address {
-  margin-top: $p-margin-top;
+@keyframes shake {
+  0% {
+    rotate: z 5deg;
+  }
+  50% {
+    rotate: z -5deg;
+  }
+  100% {
+    rotate: z 5deg;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes send {
+  0% {
+  }
+
+  20% {
+    transform: rotateZ(5deg) translate(2px, -4px);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+
+  100% {
+  }
+}
+
+@keyframes eye-blink {
+  0% {
+  }
+
+  50% {
+    transform: scaleY(0.25);
+  }
+
+  100% {
+  }
+}
+
+@keyframes project-repository-icon-hide {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    width: 0px;
+  }
+}
+
+@keyframes project-repository-lt-gt-show {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+
+  50% {
+    opacity: 0;
+    width: 16px;
+  }
+
+  100% {
+    opacity: 1;
+    width: 16px;
+  }
+}
+
+img {
+  border-radius: var(--raiar-border-radius);
+  filter: drop-shadow(var(--raiar-shadow));
+  width: 48px;
+}
+
+.project {
+  flex-grow: 1;
+  transition: var(--raiar-transition) 200ms;
+  transition-property: transform, filter;
+  width: min(512px, 100%);
+
+  &:is(#projects:has(.project:hover) &) {
+    transform: scale(98%);
+
+    &:hover {
+      transition-delay: unset;
+      filter: unset;
+      transform: scale(102.5%) !important;
+    }
+  }
+
+  &:hover .project-button-details {
+    animation: 500ms ease wiggle;
+  }
+
+  &-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--raiar-gap);
+    opacity: 0.5;
+  }
+}
+
+.project-button-view:hover > span {
+  animation: 350ms ease 150ms eye-blink;
+}
+
+.project-button-repository {
+  &-icon {
+    width: 24px;
+  }
+
+  &:hover {
+    gap: 0;
+    transition: gap 500ms;
+
+    .project-button-repository-icon {
+      animation: 1s ease project-repository-icon-hide forwards;
+    }
+
+    .project-button-repository-text {
+      &::before {
+        content: "<";
+      }
+
+      &::after {
+        content: ">";
+      }
+
+      &::before,
+      &::after {
+        animation: 1s ease project-repository-lt-gt-show forwards;
+        display: inline-block;
+        text-align: center;
+      }
+    }
+  }
+}
+
+#projects-title-bar {
+  align-items: baseline;
+  position: relative; // For &::after
+
+  // Ensures there's at least a full viewport
+  &::after {
+    bottom: -100vh;
+    content: "";
+    height: 100vh;
+    position: absolute;
+    width: 1px;
+  }
+
+  &:has([open]) {
+    align-items: center;
+
+    // Fade in the title bar when filters are opened.
+    animation: 500ms ease-in fade-in;
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &:not(:has([open])) > * {
+    // Fade in the title bar when filters are closed.
+    // This is applied to the children because the parent alreay has this
+    // animation, so the style being applied to the parent wouldn't retrigger
+    // it.
+    animation: 500ms ease-in fade-in;
+  }
+
+  #filters-accordion {
+    border: none;
+    box-shadow: var(--raiar-shadow);
+  }
+
+  #tags {
+    max-width: 768px;
+  }
+}
+
+#whoami {
+  max-width: 768px;
+}
+
+#whatsapp:is(:hover > #whatsapp) {
+  animation: 100ms linear shake infinite;
+  scale: 1.1;
+  transition: scale var(--raiar-transition);
+}
+
+#email:is(:hover > #email) {
+  animation: 1000ms ease-in send;
 }

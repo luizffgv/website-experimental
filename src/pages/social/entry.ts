@@ -1,5 +1,1 @@
-import { applyMyAge } from "Scripts/my-age";
-
-document.addEventListener("DOMContentLoaded", () => {
-  applyMyAge("#age");
-});
+import "./styles.scss?apply";

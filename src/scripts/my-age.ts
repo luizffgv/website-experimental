@@ -1,4 +1,9 @@
 /**
+ * @file
+ * Provides ways to calculate my current age.
+ */
+
+/**
  * Returns my age in years.
  */
 export function getMyAge(): number {

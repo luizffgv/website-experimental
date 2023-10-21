@@ -1,5 +1,8 @@
+/**
+ * @file
+ * Adds a bubbles simulation to the page.
+ */
+
 import { addToPage } from "Scripts/bubbles";
 
-addEventListener("DOMContentLoaded", () => {
-  addToPage();
-});
+addToPage();

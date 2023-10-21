@@ -1,156 +1,118 @@
-@use "Styles/mixins";
-@use "variables" as *;
+@use "raiar/sass/raiar.scss" with (
+  $color-primary: #ff3d83,
+  $color-dark-primary: #ff4e8e,
+  $color-dark-interactive-bg: #1a1a1a,
+  $color-list-text-even-bg: rgb(244 244 244 / 0.5),
+  $color-dark-list-text-even-bg: rgb(58 58 58 / 0.5),
+  $card-padding: 24px 32px 16px 32px,
+  $fieldset-padding: 8px
+);
 
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
-@import url("https://fonts.googleapis.com/css2?family=Exo&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Dosis&display=swap");
-
-:root {
-  background-color: $color-bg;
-
-  font-family: $font-regular;
-  font-size: $font-size;
-}
-
-* {
-  padding: 0px;
-  margin: 0px;
-}
-
-a {
-  display: flex;
-  align-items: center;
-  gap: $margin-close;
-
-  color: $color-primary;
-  text-decoration: none;
-}
-
-address {
-  font-style: inherit;
-}
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
 
 body {
-  min-width: 100vw;
+  @extend .gap-4x;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
   min-height: 100vh;
+  padding: min(16px, 2.5vw);
+  padding-bottom: 30vh;
+  position: relative;
+  width: 100%;
 }
 
-button {
-  display: flex;
-  align-items: center;
-  gap: $button-gap;
-
-  padding: $button-padding;
-
-  font-size: $button-font-size;
-
-  border: none;
-  border-radius: $button-border-radius;
-
-  background: $button-color-bg;
-  color: $button-color-fg;
-
-  transition: background-color 250ms ease;
-
-  &:focus {
-    @include mixins.glow-primary;
-
-    outline: none;
-  }
-
-  &:hover {
-    background: $button-color-bg-hover;
-  }
+code {
+  font-family: "Share Tech Mono", monospace;
 }
 
 h1 {
-  @include mixins.shadow-soft;
-
-  padding: $h1-padding;
-
-  font-family: $font-display;
-  font-size: $h1-font-size;
-  font-weight: 700;
-  line-height: 23px; // Replace by leading-trim: both; when available
-
-  border-radius: 99999px;
-
-  background-color: $h1-color-bg;
-  color: $h1-color-fg;
+  font-size: 2em;
 }
 
-h2 {
-  font-size: $h2-font-size;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
 }
 
-input[type="checkbox"] {
-  display: none;
+small {
+  opacity: 0.5;
 }
 
-label.checkbox {
-  padding: $padding-half $padding;
+button,
+.button {
+  // To support icons alongside text, as Raiar doesn't yet support that as of
+  // writing this.
+  align-items: center;
+  display: flex;
+  gap: 8px;
 
-  border-radius: 99999px;
-
-  background-color: $color-checkbox-bg;
-
-  cursor: pointer;
-  user-select: none;
-
-  transition: all 250ms ease;
-  transition-property: background-color, color;
-
-  &:has(input:checked) {
-    background-color: $color-primary;
-    color: $color-fg-light;
+  // Raiar default buttons lack contrast with raiar-card in light mode.
+  &:is(html:not(.raiar-dark) &):not(:hover) {
+    outline: 1px solid var(--raiar-color-element-border);
   }
 }
 
-p:not(:first-child) {
-  margin-top: $p-margin-top;
+.card-transparent {
+  backdrop-filter: blur(35px);
+  --raiar-color-bg-close: rgb(255 255 255 / 0.5);
+
+  &:is(.raiar-dark &) {
+    --raiar-color-bg-close: rgb(43 43 43 / 0.5);
+  }
 }
 
-section {
-  display: flex;
-  flex-direction: column;
+.raiar-card {
+  contain: content;
+  backface-visibility: hidden;
+}
+
+.weak {
+  opacity: 0.5;
+}
+
+.align-start {
+  align-items: start;
+}
+
+.align-baseline {
+  align-items: baseline;
+}
+
+.align-stretch {
+  align-items: stretch;
+}
+
+.align-center {
   align-items: center;
-
-  margin-top: $margin-section;
 }
 
-.horizontal > section:not(:first-child) {
-  margin-left: $margin-section;
-}
-
-table {
-  border-spacing: $margin-close;
-}
-
-ul {
-  margin-top: $ul-margin-top;
-
-  list-style-position: inside;
-}
-
-.button {
-  @extend button;
-}
-
-.horizontal {
-  display: flex;
-  flex-direction: row;
+.justify-center {
   justify-content: center;
-  align-items: flex-start;
 }
 
-.wrap {
-  flex-wrap: wrap;
+.justify-between {
+  justify-content: space-between;
 }
 
-*::-webkit-scrollbar {
-  width: $scrollbar-width;
+.wrap-reverse {
+  flex-wrap: wrap-reverse;
 }
 
-*::-webkit-scrollbar-thumb {
-  background-color: $scrollbar-thumb-color;
+.gap-2x {
+  gap: calc(var(--raiar-gap) * 2);
+}
+
+.gap-4x {
+  gap: calc(var(--raiar-gap) * 4);
 }

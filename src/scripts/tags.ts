@@ -1,4 +1,9 @@
 /**
+ * @file
+ * Provides no-op tag functions for formatting and syntax highlighting strings.
+ */
+
+/**
  * No-op tag function to mark a string as HTML code.
  *
  * Some IDEs and extensions will properly format and highlight code inside this

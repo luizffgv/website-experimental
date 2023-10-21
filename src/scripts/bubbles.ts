@@ -1,4 +1,10 @@
-import { throwIfNull } from "@luizffgv/ts-conversions";
+/**
+ * @file
+ * Lets you create bubble simulations in canvas elements.
+ */
+
+import { throwIfNull, uncheckedCast } from "@luizffgv/ts-conversions";
+import { html } from "./tags";
 
 /**
  * A simulated bubble.
@@ -117,13 +123,17 @@ export class Bubbles {
       aliveBubbles.push(bubble);
     }
 
-    const desiredRadius = width / 10;
-    const desiredCount = width / desiredRadius;
+    const maxRadius = width / 10;
+    const DESIRED_COUNT = 15;
 
-    while (aliveBubbles.length < desiredCount) {
-      const x = Math.random() * width;
-      const bubble = new Bubble(x, -desiredRadius, desiredRadius);
-      bubble.velY = 0.1;
+    while (aliveBubbles.length < DESIRED_COUNT) {
+      const radius = maxRadius * (Math.random() * 0.9 + 0.1);
+      const fromBelow = Math.random() < 0.5;
+      const spawnX = Math.random() * width;
+      const spawnY = fromBelow ? -radius : this.#element.clientHeight + radius;
+      const initialSpeedY = Math.random() * 0.5 * (fromBelow ? 1 : -1);
+      const bubble = new Bubble(spawnX, spawnY, radius);
+      bubble.velY = initialSpeedY;
       aliveBubbles.push(bubble);
     }
 
@@ -145,16 +155,77 @@ export class Bubbles {
   }
 }
 
+/**
+ * Adds a bubbles simulation to the page.
+ *
+ * @remarks
+ * Should only be called once per page.
+ */
 export function addToPage(): void {
   const canvas = document.createElement("canvas");
 
-  canvas.style.width = "100vw";
+  canvas.id = "bubbles";
+  canvas.style.width = "100%";
   canvas.style.height = "100vh";
+  canvas.style.opacity = "0";
   canvas.style.top = "0";
+  canvas.style.left = "0";
   canvas.style.position = "fixed";
   canvas.style.zIndex = "-1";
+  canvas.style.filter = 'url("#bubbles-filter")';
 
-  document.body.appendChild(canvas);
+  const spawnAnimation = new Animation(
+    new KeyframeEffect(
+      canvas,
+      [
+        {
+          opacity: "0",
+        },
+        {
+          opacity: "1",
+        },
+      ],
+      { duration: 5000, easing: "ease-in", fill: "forwards" }
+    )
+  );
 
-  new Bubbles(canvas, 0.5, "rgba(0, 0, 0, 0.01)");
+  setTimeout(() => {
+    spawnAnimation.play();
+  }, 500);
+
+  const filterContainer = document.createElement("div");
+  filterContainer.id = "bubbles-filter-container";
+  filterContainer.style.display = "none";
+  filterContainer.innerHTML = html`<svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="bubbles-filter">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="25" />
+        <feColorMatrix
+          in="goo"
+          type="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 50 -10"
+        />
+      </filter>
+    </defs>
+  </svg>`;
+  document.body.appendChild(filterContainer);
+
+  const fade = document.createElement("div");
+  fade.style.position = "absolute";
+  fade.style.left = "0";
+  fade.style.width = "100%";
+  fade.style.height = "256px";
+  fade.style.zIndex = "-1";
+  fade.style.background =
+    "linear-gradient(to bottom, var(--raiar-color-bg), transparent)";
+
+  const fadeBottom = uncheckedCast<HTMLElement>(fade.cloneNode());
+  fadeBottom.style.rotate = "z 180deg";
+  fadeBottom.style.bottom = "0";
+
+  fade.style.top = "0";
+
+  document.body.append(canvas, fade, fadeBottom);
+
+  new Bubbles(canvas, 1 / 5, "rgb(255, 61, 131)");
 }

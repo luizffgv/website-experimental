@@ -6,19 +6,19 @@
 
     /* Modules */
     "module": "ES6",
-    "rootDir": "./src",
+    "rootDir": "./",
     "moduleResolution": "Node",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "Components/*": ["components/*"],
-      "Scripts/*": ["scripts/*"],
-      "Styles/*": ["styles/*"]
+      "Components/*": ["src/components/*"],
+      "Scripts/*": ["src/scripts/*"],
+      "Styles/*": ["src/styles/*"],
+      "RaiarComponents/*": ["raiar/components/*"]
     },
     "resolveJsonModule": true,
 
     /* JavaScript Support */
-
-    /* Emit */
+    "allowJs": true,
 
     /* Interop Constraints */
     "allowSyntheticDefaultImports": true,

@@ -122,7 +122,11 @@ const htmlPlugins = pages.map(
 
 const cnamePlugin = new CopyPlugin({ patterns: ["CNAME"] });
 
-const plugins = [...htmlPlugins, cnamePlugin];
+const assetsPlugin = new CopyPlugin({
+  patterns: [{ from: "src/assets", to: "assets" }],
+});
+
+const plugins = [...htmlPlugins, cnamePlugin, assetsPlugin];
 
 /* ----------------------------- Webpack config ----------------------------- */
 
@@ -171,6 +175,7 @@ module.exports = {
       Components: path.resolve(__dirname, "src/components/"),
       Scripts: path.resolve(__dirname, "src/scripts/"),
       Styles: path.resolve(__dirname, "src/styles/"),
+      RaiarComponents: path.resolve(__dirname, "raiar/components/"),
     },
   },
   output: {
