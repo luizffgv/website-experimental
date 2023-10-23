@@ -118,15 +118,32 @@ img {
     }
   }
 
-  &:hover .project-button-details {
-    animation: 500ms ease wiggle;
-  }
-
   &-tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--raiar-gap);
     opacity: 0.5;
+  }
+}
+
+.project-button-details {
+  &:is(.project:hover &) {
+    animation: 500ms ease wiggle;
+  }
+
+  &:hover span::after {
+    rotate: z 45deg;
+  }
+
+  span {
+    position: relative;
+
+    &::after {
+      content: "add";
+      inset: 0;
+      position: absolute;
+      transition: rotate 250ms ease-in-out;
+    }
   }
 }
 
