@@ -275,11 +275,15 @@ function createTagElement(tag: Tag): HTMLLabelElement {
  */
 function refreshProjects(): void {
   const projectsFadeOut = new Animation(
-    new KeyframeEffect(elements.projects, [{ opacity: 1 }, { opacity: 0 }], {
-      duration: 125,
-      easing: "ease",
-      fill: "forwards",
-    })
+    new KeyframeEffect(
+      elements.projects,
+      [{ opacity: 1 }, { opacity: 0, scale: 0.95 }],
+      {
+        duration: 125,
+        easing: "ease",
+        fill: "forwards",
+      }
+    )
   );
 
   const onFadeOut = () => {

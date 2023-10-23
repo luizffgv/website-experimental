@@ -166,6 +166,10 @@ img {
   }
 }
 
+#projects {
+  transform-origin: top; // For the refresh animation
+}
+
 #projects-title-bar {
   align-items: baseline;
   position: relative; // For &::after
