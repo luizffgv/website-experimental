@@ -213,7 +213,7 @@ img {
 
   &:not(:has([open])) > * {
     // Fade in the title bar when filters are closed.
-    // This is applied to the children because the parent alreay has this
+    // This is applied to the children because the parent already has this
     // animation, so the style being applied to the parent wouldn't retrigger
     // it.
     animation: 500ms ease-in fade-in;
