@@ -58,7 +58,7 @@ export class Bubbles {
   #prevTimestamp?: DOMHighResTimeStamp;
   #bubbles: Bubble[] = [];
   #speed: number;
-  #color: string;
+  #colorGenerator: () => string;
   #stop: boolean = false;
 
   /**
@@ -66,12 +66,18 @@ export class Bubbles {
    *
    * @param element - Canvas element to use.
    * @param speed - Simulation speed.
-   * @param color - Color of the bubbles.
+   * @param color - Color of the bubbles, or function that returns a color.
    */
-  constructor(element: HTMLCanvasElement, speed: number, color: string) {
+  constructor(
+    element: HTMLCanvasElement,
+    speed: number,
+    color: string | (() => string)
+  ) {
     this.#element = element;
     this.#speed = speed;
-    this.#color = color;
+
+    if (typeof color == "string") this.#colorGenerator = () => color;
+    else this.#colorGenerator = color;
 
     this.#context = throwIfNull(this.#element.getContext("2d"));
 
@@ -93,7 +99,7 @@ export class Bubbles {
 
     const aliveBubbles: Bubble[] = [];
 
-    this.#context.fillStyle = this.#color;
+    this.#context.fillStyle = this.#colorGenerator();
 
     for (const bubble of this.#bubbles) {
       if (
@@ -222,5 +228,9 @@ export function addToPage(): void {
 
   document.body.append(canvas, fade);
 
-  new Bubbles(canvas, 1 / 5, "rgb(255, 61, 131)");
+  const bodyStyle = getComputedStyle(document.body);
+
+  new Bubbles(canvas, 1 / 5, () =>
+    bodyStyle.getPropertyValue("--raiar-color-primary")
+  );
 }
