@@ -3,7 +3,7 @@
  * Lets you create bubble simulations in canvas elements.
  */
 
-import { throwIfNull, uncheckedCast } from "@luizffgv/ts-conversions";
+import { throwIfNull } from "@luizffgv/ts-conversions";
 import { html } from "./tags";
 
 /**
