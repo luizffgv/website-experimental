@@ -24,7 +24,7 @@ function addNoopenerNoreferrer(element: HTMLAnchorElement) {
  */
 function updateAnchors(element: Element) {
   if (element instanceof HTMLAnchorElement) addNoopenerNoreferrer(element);
-  else for (const child of [...element.children]) updateAnchors(child);
+  else for (const child of element.children) updateAnchors(child);
 }
 
 // Update anchors that were added before this script ran.
