@@ -132,6 +132,9 @@ const plugins = [...htmlPlugins, cnamePlugin, assetsPlugin];
 
 module.exports = {
   mode: "development",
+  optimization: {
+    runtimeChunk: "single",
+  },
   entry: entries,
   plugins: plugins,
   module: {
