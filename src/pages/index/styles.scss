@@ -108,7 +108,7 @@ img {
   transition-property: transform, filter;
   width: min(512px, 100%);
 
-  &:is(#projects:has(.project:hover) &) {
+  #projects:has(.project:hover) & {
     transform: scale(98%);
 
     &:hover {
@@ -119,7 +119,7 @@ img {
   }
 
   &-button-details {
-    &:is(.project:hover &) {
+    .project:hover & {
       animation: 500ms ease wiggle;
     }
 
@@ -183,8 +183,10 @@ img {
   }
 }
 
-#email:is(:hover > #email) {
-  animation: 1000ms ease-in send;
+#email {
+  :hover > & {
+    animation: 1000ms ease-in send;
+  }
 }
 
 #projects {
@@ -233,10 +235,12 @@ img {
   }
 }
 
-#whatsapp:is(:hover > #whatsapp) {
-  animation: 100ms linear shake infinite;
-  scale: 1.1;
-  transition: scale var(--raiar-transition);
+#whatsapp {
+  :hover > & {
+    animation: 100ms linear shake infinite;
+    scale: 1.1;
+    transition: scale var(--raiar-transition);
+  }
 }
 
 #whoami {
