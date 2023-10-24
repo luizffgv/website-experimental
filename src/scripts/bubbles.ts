@@ -76,8 +76,7 @@ export class Bubbles {
     this.#element = element;
     this.#speed = speed;
 
-    if (typeof color == "string") this.#colorGenerator = () => color;
-    else this.#colorGenerator = color;
+    this.#colorGenerator = typeof color == "string" ? () => color : color;
 
     this.#context = throwIfNull(this.#element.getContext("2d"));
 
