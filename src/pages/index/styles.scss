@@ -1,30 +1,12 @@
-@keyframes wiggle {
+@keyframes eye-blink {
   0% {
-    rotate: z 0deg;
   }
-  25% {
-    rotate: z -1.25deg;
-  }
-  50% {
-    rotate: z 2.5deg;
-  }
-  75% {
-    rotate: z -1.25deg;
-  }
-  100% {
-    rotate: z 0deg;
-  }
-}
 
-@keyframes shake {
-  0% {
-    rotate: z 5deg;
-  }
   50% {
-    rotate: z -5deg;
+    transform: scaleY(0.25);
   }
+
   100% {
-    rotate: z 5deg;
   }
 }
 
@@ -35,36 +17,6 @@
 
   to {
     opacity: 1;
-  }
-}
-
-@keyframes send {
-  0% {
-  }
-
-  20% {
-    transform: rotateZ(5deg) translate(2px, -4px);
-    opacity: 0;
-  }
-
-  80% {
-    transform: translateY(4px);
-    opacity: 0;
-  }
-
-  100% {
-  }
-}
-
-@keyframes eye-blink {
-  0% {
-  }
-
-  50% {
-    transform: scaleY(0.25);
-  }
-
-  100% {
   }
 }
 
@@ -96,6 +48,54 @@
   }
 }
 
+@keyframes send {
+  0% {
+  }
+
+  20% {
+    transform: rotateZ(5deg) translate(2px, -4px);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+
+  100% {
+  }
+}
+
+@keyframes shake {
+  0% {
+    rotate: z 5deg;
+  }
+  50% {
+    rotate: z -5deg;
+  }
+  100% {
+    rotate: z 5deg;
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    rotate: z 0deg;
+  }
+  25% {
+    rotate: z -1.25deg;
+  }
+  50% {
+    rotate: z 2.5deg;
+  }
+  75% {
+    rotate: z -1.25deg;
+  }
+  100% {
+    rotate: z 0deg;
+  }
+}
+
 img {
   border-radius: var(--raiar-border-radius);
   filter: drop-shadow(var(--raiar-shadow));
@@ -118,6 +118,63 @@ img {
     }
   }
 
+  &-button-details {
+    &:is(.project:hover &) {
+      animation: 500ms ease wiggle;
+    }
+
+    &:hover span::after {
+      rotate: z 45deg;
+    }
+
+    span {
+      position: relative;
+
+      &::after {
+        content: "add";
+        inset: 0;
+        position: absolute;
+        transition: rotate 250ms ease-in-out;
+      }
+    }
+  }
+
+  &-button-repository {
+    &-icon {
+      width: 24px;
+    }
+
+    &:hover {
+      gap: 0;
+      transition: gap 500ms;
+
+      .project-button-repository-icon {
+        animation: 1s ease project-repository-icon-hide forwards;
+      }
+
+      .project-button-repository-text {
+        &::before {
+          content: "<";
+        }
+
+        &::after {
+          content: ">";
+        }
+
+        &::before,
+        &::after {
+          animation: 1s ease project-repository-lt-gt-show forwards;
+          display: inline-block;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  &-button-view:hover > span {
+    animation: 350ms ease 150ms eye-blink;
+  }
+
   &-tags {
     display: flex;
     flex-wrap: wrap;
@@ -126,111 +183,54 @@ img {
   }
 }
 
-.project-button-details {
-  &:is(.project:hover &) {
-    animation: 500ms ease wiggle;
-  }
-
-  &:hover span::after {
-    rotate: z 45deg;
-  }
-
-  span {
-    position: relative;
-
-    &::after {
-      content: "add";
-      inset: 0;
-      position: absolute;
-      transition: rotate 250ms ease-in-out;
-    }
-  }
-}
-
-.project-button-view:hover > span {
-  animation: 350ms ease 150ms eye-blink;
-}
-
-.project-button-repository {
-  &-icon {
-    width: 24px;
-  }
-
-  &:hover {
-    gap: 0;
-    transition: gap 500ms;
-
-    .project-button-repository-icon {
-      animation: 1s ease project-repository-icon-hide forwards;
-    }
-
-    .project-button-repository-text {
-      &::before {
-        content: "<";
-      }
-
-      &::after {
-        content: ">";
-      }
-
-      &::before,
-      &::after {
-        animation: 1s ease project-repository-lt-gt-show forwards;
-        display: inline-block;
-        text-align: center;
-      }
-    }
-  }
+#email:is(:hover > #email) {
+  animation: 1000ms ease-in send;
 }
 
 #projects {
   transform-origin: top; // For the refresh animation
-}
 
-#projects-title-bar {
-  align-items: baseline;
-  position: relative; // For &::after
+  &-title-bar {
+    align-items: baseline;
+    position: relative; // For &::after
 
-  // Ensures there's at least a full viewport
-  &::after {
-    bottom: -100vh;
-    content: "";
-    height: 100vh;
-    position: absolute;
-    width: 1px;
+    // Ensures there's at least a full viewport
+    &::after {
+      bottom: -100vh;
+      content: "";
+      height: 100vh;
+      position: absolute;
+      width: 1px;
+    }
+
+    &:has([open]) {
+      align-items: center;
+
+      // Fade in the title bar when filters are opened.
+      animation: 500ms ease-in fade-in;
+
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    &:not(:has([open])) > * {
+      // Fade in the title bar when filters are closed.
+      // This is applied to the children because the parent already has this
+      // animation, so the style being applied to the parent wouldn't retrigger
+      // it.
+      animation: 500ms ease-in fade-in;
+    }
+
+    #filters-accordion {
+      border: none;
+      box-shadow: var(--raiar-shadow);
+    }
+
+    #tags {
+      max-width: 768px;
+    }
   }
-
-  &:has([open]) {
-    align-items: center;
-
-    // Fade in the title bar when filters are opened.
-    animation: 500ms ease-in fade-in;
-
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  &:not(:has([open])) > * {
-    // Fade in the title bar when filters are closed.
-    // This is applied to the children because the parent already has this
-    // animation, so the style being applied to the parent wouldn't retrigger
-    // it.
-    animation: 500ms ease-in fade-in;
-  }
-
-  #filters-accordion {
-    border: none;
-    box-shadow: var(--raiar-shadow);
-  }
-
-  #tags {
-    max-width: 768px;
-  }
-}
-
-#whoami {
-  max-width: 768px;
 }
 
 #whatsapp:is(:hover > #whatsapp) {
@@ -239,6 +239,6 @@ img {
   transition: scale var(--raiar-transition);
 }
 
-#email:is(:hover > #email) {
-  animation: 1000ms ease-in send;
+#whoami {
+  max-width: 768px;
 }

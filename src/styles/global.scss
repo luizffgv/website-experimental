@@ -25,6 +25,19 @@ body {
   width: 100%;
 }
 
+button {
+  // To support icons alongside text, as Raiar doesn't yet support that as of
+  // writing this.
+  align-items: center;
+  display: flex;
+  gap: 8px;
+
+  // Raiar default buttons lack contrast with raiar-card in light mode.
+  &:is(html:not(.raiar-dark) &):not(:hover) {
+    outline: 1px solid var(--raiar-color-element-border);
+  }
+}
+
 code {
   font-family: "Share Tech Mono", monospace;
 }
@@ -47,18 +60,24 @@ small {
   opacity: 0.5;
 }
 
-button,
-.button {
-  // To support icons alongside text, as Raiar doesn't yet support that as of
-  // writing this.
-  align-items: center;
-  display: flex;
-  gap: 8px;
+.align-baseline {
+  align-items: baseline;
+}
 
-  // Raiar default buttons lack contrast with raiar-card in light mode.
-  &:is(html:not(.raiar-dark) &):not(:hover) {
-    outline: 1px solid var(--raiar-color-element-border);
-  }
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: start;
+}
+
+.align-stretch {
+  align-items: stretch;
+}
+
+.button {
+  @extend button;
 }
 
 .card-transparent {
@@ -72,6 +91,22 @@ button,
   }
 }
 
+.gap-2x {
+  gap: calc(var(--raiar-gap) * 2);
+}
+
+.gap-4x {
+  gap: calc(var(--raiar-gap) * 4);
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
 .raiar-card {
   contain: content;
   backface-visibility: hidden;
@@ -81,38 +116,6 @@ button,
   opacity: 0.5;
 }
 
-.align-start {
-  align-items: start;
-}
-
-.align-baseline {
-  align-items: baseline;
-}
-
-.align-stretch {
-  align-items: stretch;
-}
-
-.align-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
 .wrap-reverse {
   flex-wrap: wrap-reverse;
-}
-
-.gap-2x {
-  gap: calc(var(--raiar-gap) * 2);
-}
-
-.gap-4x {
-  gap: calc(var(--raiar-gap) * 4);
 }
