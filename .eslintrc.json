@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:unicorn/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "unicorn"],
+  "ignorePatterns": ["raiar", "dist", "webpack.*.js"],
+  "rules": {
+    // Null and undefined have different meanings and aren't interchangeable.
+    "unicorn/no-null": "off",
+    // querySelector and getElement methods work differently and aren't
+    // interchangeable.
+    "unicorn/prefer-query-selector": "off"
+  }
+}

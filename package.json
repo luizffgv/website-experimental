@@ -30,9 +30,16 @@
     "style-loader": "3.3.3",
     "to-string-loader": "1.2.0",
     "ts-loader": "9.4.4",
+    "typescript": "5.2.2",
     "webpack": "5.88.2",
     "webpack-cli": "4.10.0",
     "webpack-dev-server": "4.15.1",
     "webpack-merge": "5.9.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "6.9.0",
+    "@typescript-eslint/parser": "6.9.0",
+    "eslint": "8.52.0",
+    "eslint-plugin-unicorn": "48.0.1"
   }
 }
