@@ -129,7 +129,7 @@ class Project {
           tagsElement.append(
             ...this.tags.map((tag) => {
               const tagElement = document.createElement("span");
-              tagElement.innerText = `#${tag}`;
+              tagElement.textContent = `#${tag}`;
               return tagElement;
             })
           );
