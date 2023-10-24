@@ -19,7 +19,7 @@ style.textContent = css`
     }
   }
 `;
-document.head.appendChild(style);
+document.head.append(style);
 
 const container = document.createElement("div");
 container.classList.add("raiar-vertical", "raiar-gap", "align-center");
@@ -105,16 +105,13 @@ primaryChooseElement.addEventListener("click", () => {
 
   const buttonContainer = document.createElement("div");
   buttonContainer.classList.add("raiar-horizontal", "raiar-gap");
-  buttonContainer.appendChild(cancelButton);
-  buttonContainer.appendChild(applyButton);
+  buttonContainer.append(cancelButton, applyButton);
 
   const container = document.createElement("div");
   container.classList.add("raiar-vertical", "align-center", "raiar-gap");
-  container.appendChild(header);
-  container.appendChild(colorPicker);
-  container.appendChild(buttonContainer);
+  container.append(header, colorPicker, buttonContainer);
 
-  colorPickerModal.appendChild(container);
+  colorPickerModal.append(container);
 
-  document.body.appendChild(colorPickerModal);
+  document.body.append(colorPickerModal);
 });

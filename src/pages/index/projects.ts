@@ -135,7 +135,7 @@ class Project {
           );
           titleElement.before(tagsElement);
 
-          document.body.appendChild(modal);
+          document.body.append(modal);
         });
 
         buttonsContainer.insertBefore(
@@ -264,8 +264,7 @@ function createTagElement(tag: Tag): HTMLLabelElement {
   });
 
   const label = document.createElement("label");
-  label.appendChild(checkbox);
-  label.appendChild(document.createTextNode(tag));
+  label.append(checkbox, document.createTextNode(tag));
 
   return label;
 }
@@ -336,7 +335,7 @@ for (const filterMode of elements.filterModes.querySelectorAll("input"))
   });
 
 for (const tag of tags) {
-  elements.tags.appendChild(createTagElement(tag));
+  elements.tags.append(createTagElement(tag));
 }
 
 refreshProjects();

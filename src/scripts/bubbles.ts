@@ -216,7 +216,7 @@ export function addToPage(): void {
       </defs>
     </svg>
   `;
-  document.body.appendChild(filterContainer);
+  document.body.append(filterContainer);
 
   const fade = document.createElement("div");
   fade.style.position = "absolute";
