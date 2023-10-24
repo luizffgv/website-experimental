@@ -133,7 +133,7 @@ class Project {
               return tagElement;
             })
           );
-          modal.insertBefore(tagsElement, titleElement);
+          titleElement.before(tagsElement);
 
           document.body.appendChild(modal);
         });
