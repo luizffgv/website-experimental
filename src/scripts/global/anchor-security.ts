@@ -10,10 +10,10 @@
  * @param element - Target element.
  */
 function addNoopenerNoreferrer(element: HTMLAnchorElement) {
-  let rel = element.getAttribute("rel") ?? "";
-  if (!rel.includes("noopener")) rel += " noopener";
-  if (!rel.includes("noreferrer")) rel += " noreferrer";
-  element.setAttribute("rel", rel);
+  let relationship = element.getAttribute("rel") ?? "";
+  if (!relationship.includes("noopener")) relationship += " noopener";
+  if (!relationship.includes("noreferrer")) relationship += " noreferrer";
+  element.setAttribute("rel", relationship);
 }
 
 /**

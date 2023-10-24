@@ -11,16 +11,16 @@
  */
 export function html(
   strings: TemplateStringsArray,
-  ...vals: unknown[]
+  ...values: unknown[]
 ): string {
-  const valStrings = vals.map(String);
+  const valueStrings = values.map(String);
   // valStrings count could be one less than strings count, so we add a dummy
   // string
-  valStrings.push("");
+  valueStrings.push("");
 
   return strings
-    .map((string, index) => string + valStrings[index])
-    .reduce((prev, cur) => prev + cur);
+    .map((string, index) => string + valueStrings[index])
+    .reduce((previous, current) => previous + current);
 }
 
 /**
@@ -29,6 +29,9 @@ export function html(
  * Some IDEs and extensions will properly format and highlight code inside this
  * tag.
  */
-export function css(strings: TemplateStringsArray, ...vals: unknown[]): string {
-  return html(strings, ...vals);
+export function css(
+  strings: TemplateStringsArray,
+  ...values: unknown[]
+): string {
+  return html(strings, ...values);
 }
