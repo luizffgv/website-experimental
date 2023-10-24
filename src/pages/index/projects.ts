@@ -308,7 +308,7 @@ function refreshProjects(): void {
       .withLogic(filterMode)
       .get();
 
-    if (filteredProjects.projects.length == 0)
+    if (filteredProjects.projects.length === 0)
       elements.projects.textContent =
         "Que pena, nenhum projeto se encaixa em todas essas categorias.";
     else elements.projects.replaceChildren(...filteredProjects.elements());
