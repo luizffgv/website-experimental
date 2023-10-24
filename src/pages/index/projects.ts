@@ -147,6 +147,16 @@ class Project {
 
     return this.#element;
   }
+
+  /**
+   * Returns a set of matches between the project's tags and the provided tags.
+   *
+   * @param tags - Tags to check the project against.
+   * @returns - Set of matched tags.
+   */
+  matchingTags(tags: Set<Tag>): Set<Tag> {
+    return new Set(this.tags.filter((tag) => tags.has(tag)));
+  }
 }
 
 /**
@@ -221,15 +231,13 @@ class ProjectQueryBuilder {
    * Gets the results of the query.
    */
   get(): ProjectQueryResult {
-    const matchingTagsCount = (project: Project) => {
-      return project.tags.filter((tag) => this.#tags.has(tag)).length;
-    };
-
     let matching = [...this.#projects].sort(
-      (p1, p2) => matchingTagsCount(p2) - matchingTagsCount(p1)
+      (p1, p2) =>
+        p2.matchingTags(this.#tags).size - p1.matchingTags(this.#tags).size
     );
 
-    if (requiredTags.size > 0) matching = matching.filter(matchingTagsCount);
+    if (requiredTags.size > 0)
+      matching = matching.filter((p) => p.matchingTags(this.#tags).size > 0);
 
     if (this.#logic == "every")
       matching = matching.filter((p) => {
