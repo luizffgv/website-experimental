@@ -187,7 +187,8 @@ const projects: ProjectRaw[] = [
       "TypeScript",
       "Webpack",
     ],
-    details: html` <p>
+    details: html`
+      <p>
         Globe utiliza Three.js para exibir um globo giratório de pontos com
         efeitos de bloom e ondulação.
       </p>
@@ -198,7 +199,8 @@ const projects: ProjectRaw[] = [
       <p>
         A movimentação de cada ponto no globo é determinada via JavaScript, mas
         é também factível implementar via shaders para melhor desempenho.
-      </p>`,
+      </p>
+    `,
     license: "MIT License",
     url: "https://globe.luizf.dev",
     repository: "https://github.com/luizffgv/globe",

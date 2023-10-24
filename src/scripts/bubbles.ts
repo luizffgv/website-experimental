@@ -202,18 +202,20 @@ export function addToPage(): void {
   const filterContainer = document.createElement("div");
   filterContainer.id = "bubbles-filter-container";
   filterContainer.style.display = "none";
-  filterContainer.innerHTML = html`<svg xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="bubbles-filter">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="25" />
-        <feColorMatrix
-          in="goo"
-          type="matrix"
-          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 50 -10"
-        />
-      </filter>
-    </defs>
-  </svg>`;
+  filterContainer.innerHTML = html`
+    <svg xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="bubbles-filter">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="25" />
+          <feColorMatrix
+            in="goo"
+            type="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 50 -10"
+          />
+        </filter>
+      </defs>
+    </svg>
+  `;
   document.body.appendChild(filterContainer);
 
   const fade = document.createElement("div");

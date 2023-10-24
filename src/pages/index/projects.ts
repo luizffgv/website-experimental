@@ -48,19 +48,21 @@ class Project {
     if (!this.#element) {
       let buttons = "";
       if (this.url != null)
-        buttons += html`<a class="project-button-view button" href=${this.url}>
-          <span class="material-symbols-outlined">visibility</span> Visualizar
-        </a>`;
+        buttons += html`
+          <a class="project-button-view button" href=${this.url}>
+            <span class="material-symbols-outlined">visibility</span> Visualizar
+          </a>
+        `;
       if (this.repository != null)
-        buttons += html`<a
-          class="project-button-repository button"
-          href=${this.repository}
-        >
-          <span class="project-button-repository-icon material-symbols-outlined"
-            >code</span
-          >
-          <span class="project-button-repository-text">Repositório</span>
-        </a>`;
+        buttons += html`
+          <a class="project-button-repository button" href=${this.repository}>
+            <span
+              class="project-button-repository-icon material-symbols-outlined"
+              >code</span
+            >
+            <span class="project-button-repository-text">Repositório</span>
+          </a>
+        `;
 
       const license = this.license
         ? html`<small class="project-license">${this.license}</small>`
@@ -108,10 +110,10 @@ class Project {
 
         const detailsButton = document.createElement("button");
         detailsButton.classList.add("project-button-details");
-        detailsButton.innerHTML = html`<span class="material-symbols-outlined"
-            >add</span
-          >
-          Detalhes`;
+        detailsButton.innerHTML = html`
+          <span class="material-symbols-outlined">add</span>
+          Detalhes
+        `;
         detailsButton.addEventListener("click", () => {
           const modal = new Modal();
 
