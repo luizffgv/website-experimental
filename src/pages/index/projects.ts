@@ -50,17 +50,27 @@ class Project {
       if (this.url != null)
         buttons += html`
           <a class="project-button-view button" href=${this.url}>
-            <span class="material-symbols-outlined">visibility</span> Visualizar
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >visibility</span
+            >
+            Visualizar
           </a>
         `;
       if (this.repository != null)
         buttons += html`
-          <a class="project-button-repository button" href=${this.repository}>
+          <a
+            class="project-button-repository button"
+            href=${this.repository}
+            aria-label="Repositório"
+          >
             <span
               class="project-button-repository-icon material-symbols-outlined"
+              aria-hidden="true"
               >code</span
             >
-            <span class="project-button-repository-text">Repositório</span>
+            <span class="project-button-repository-text" aria-hidden="true"
+              >Repositório</span
+            >
           </a>
         `;
 
@@ -112,7 +122,7 @@ class Project {
         const detailsButton = document.createElement("button");
         detailsButton.classList.add("project-button-details");
         detailsButton.innerHTML = html`
-          <span class="material-symbols-outlined">add</span>
+          <span class="material-symbols-outlined" aria-hidden="true">add</span>
           Detalhes
         `;
         detailsButton.addEventListener("click", () => {
