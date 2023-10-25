@@ -180,6 +180,7 @@
         >
           <img
             src="assets/project-images/${this.imageOverride??this.name}.webp"
+            alt="${this.name}"
             onerror="this.style.display = 'none'"
           />
           <div class="raiar-horizontal raiar-gap raiar-wrap align-baseline">
