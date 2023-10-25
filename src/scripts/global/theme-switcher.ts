@@ -27,11 +27,11 @@ container.innerHTML = html`
   <div class="raiar-vertical raiar-gap align-center">
     <h2>Mudar tema</h2>
     <div class="raiar-horizontal justify-center raiar-gap raiar-wrap">
-      <button id="button-theme-toggle" aria-label="Toggle theme">
+      <button id="button-theme-toggle" aria-label="Mudar tema">
         <span></span>
       </button>
-      <button id="button-primary-choose" aria-label="Choose primary color">
-        <span class="material-symbols-outlined">brush</span>
+      <button id="button-primary-choose" aria-label="Escolher cor primária">
+        <span class="material-symbols-outlined" aria-hidden="true">brush</span>
       </button>
     </div>
   </div>
