@@ -1,0 +1,22 @@
+main {
+  h1 {
+    margin: 0.67em 0;
+  }
+
+  h2 {
+    margin: 0.75em 0;
+  }
+
+  h3 {
+    margin: 0.83em 0;
+  }
+
+  p {
+    margin: 1.12em 0;
+    max-width: 80ch;
+  }
+
+  ul:not(ul ul) {
+    margin: 1.12em 0;
+  }
+}

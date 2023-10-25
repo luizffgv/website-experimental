@@ -78,6 +78,10 @@ small {
   align-items: stretch;
 }
 
+.block {
+  display: block;
+}
+
 .button {
   @extend button;
 }
