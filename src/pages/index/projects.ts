@@ -90,6 +90,9 @@ class Project {
       );
       if (this.wip) this.#element.classList.add("wip");
 
+      this.#element.role = "group";
+      this.#element.ariaLabel = this.name;
+
       this.#element.innerHTML = html`
         <!-- Here we use a min-height equal to the image height so project
              titles stay at the same height whether or not an image is present
