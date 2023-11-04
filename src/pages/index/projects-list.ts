@@ -20,6 +20,7 @@ export type Tag =
   | "GitHub Actions"
   | "HTML"
   | "JavaScript"
+  | "Lit"
   | "Livro"
   | "Lua"
   | "Markdown"
@@ -299,6 +300,26 @@ const projects: ProjectRaw[] = [
     tags: ["GitHub", "HTML", "Framework", "JavaScript", "Sass"],
     license: "MIT License",
     repository: "https://github.com/luizffgv/raiar",
+  },
+  {
+    name: "Shader Site",
+    description:
+      "Um site que te ajuda a encontrar o shaderpack de Minecraft ideal para você.",
+    tags: [
+      "GitHub",
+      "GitHub Actions",
+      "HTML",
+      "JavaScript",
+      "Lit",
+      "Node.js",
+      "Sass",
+      "Site",
+      "TypeScript",
+      "Webpack",
+    ],
+    license: "MIT License",
+    repository: "https://github.com/luizffgv/shader-site",
+    url: "https://shadersite.luizf.dev",
   },
   {
     name: "SoR-pt-BR",
