@@ -103,84 +103,88 @@ img {
 }
 
 .project {
-  flex-grow: 1;
-  transition: var(--raiar-transition) 200ms;
-  transition-property: transform, filter;
-  width: min(512px, 100%);
+  display: contents;
 
-  #projects:has(.project:hover) & {
-    transform: scale(98%);
+  .project__container {
+    flex-grow: 1;
+    transition: var(--raiar-transition) 200ms;
+    transition-property: transform, filter;
+    width: min(512px, 100%);
 
-    &:hover {
-      transition-delay: unset;
-      filter: unset;
-      transform: scale(102.5%) !important;
-    }
-  }
+    #projects:has(.project:hover) & {
+      transform: scale(98%);
 
-  &-button-details {
-    .project:hover & {
-      animation: 500ms ease wiggle;
-    }
-
-    &:hover span::after {
-      rotate: z 45deg;
-    }
-
-    span {
-      position: relative;
-
-      &::after {
-        content: "add";
-        inset: 0;
-        position: absolute;
-        transition: rotate 250ms ease-in-out;
+      &:hover {
+        transition-delay: unset;
+        filter: unset;
+        transform: scale(102.5%) !important;
       }
     }
-  }
 
-  &-button-repository {
-    &-icon {
-      width: 24px;
-    }
-
-    &:hover {
-      gap: 0;
-      transition: gap 500ms;
-
-      .project-button-repository-icon {
-        animation: 1s ease project-repository-icon-hide forwards;
+    .project__button-details {
+      .project:hover & {
+        animation: 500ms ease wiggle;
       }
 
-      .project-button-repository-text {
-        &::before {
-          content: "<";
-        }
+      &:hover span::after {
+        rotate: z 45deg;
+      }
+
+      span {
+        position: relative;
 
         &::after {
-          content: ">";
-        }
-
-        &::before,
-        &::after {
-          animation: 1s ease project-repository-lt-gt-show forwards;
-          display: inline-block;
-          text-align: center;
+          content: "add";
+          inset: 0;
+          position: absolute;
+          transition: rotate 250ms ease-in-out;
         }
       }
     }
-  }
 
-  &-button-view:hover > span {
-    animation: 350ms ease 150ms eye-blink;
-  }
+    .project__button-repository {
+      &-icon {
+        width: 24px;
+      }
 
-  &-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--raiar-gap);
-    opacity: 0.5;
+      &:hover {
+        gap: 0;
+        transition: gap 500ms;
+
+        .project-button-repository-icon {
+          animation: 1s ease project-repository-icon-hide forwards;
+        }
+
+        .project-button-repository-text {
+          &::before {
+            content: "<";
+          }
+
+          &::after {
+            content: ">";
+          }
+
+          &::before,
+          &::after {
+            animation: 1s ease project-repository-lt-gt-show forwards;
+            display: inline-block;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .project__button-view:hover > span {
+      animation: 350ms ease 150ms eye-blink;
+    }
   }
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--raiar-gap);
+  opacity: 0.5;
 }
 
 #email {

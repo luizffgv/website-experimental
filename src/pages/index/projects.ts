@@ -49,7 +49,7 @@ class Project {
       let buttons = "";
       if (this.url != null)
         buttons += html`
-          <a class="project-button-view button" href=${this.url}>
+          <a class="project__button-view button" href=${this.url}>
             <span class="material-symbols-outlined" aria-hidden="true"
               >visibility</span
             >
@@ -59,41 +59,41 @@ class Project {
       if (this.repository != null)
         buttons += html`
           <a
-            class="project-button-repository button"
+            class="project__button-repository button"
             href=${this.repository}
             aria-label="Repositório"
           >
             <span
-              class="project-button-repository-icon material-symbols-outlined"
+              class="project__button-repository-icon material-symbols-outlined"
               aria-hidden="true"
               >code</span
             >
-            <span class="project-button-repository-text" aria-hidden="true"
+            <span class="project__button-repository-text" aria-hidden="true"
               >Repositório</span
             >
           </a>
         `;
 
       const license = this.license
-        ? html`<small class="project-license">${this.license}</small>`
+        ? html`<small class="project__license">${this.license}</small>`
         : "";
 
-      this.#element = document.createElement("li");
+      const container = document.createElement("div");
 
-      this.#element.classList.add(
-        "project",
+      container.classList.add(
+        "project__container",
         "align-center",
         "raiar-card",
         "raiar-vertical",
         "raiar-gap",
         "justify-between"
       );
-      if (this.wip) this.#element.classList.add("wip");
+      if (this.wip) container.classList.add("wip");
 
-      this.#element.role = "group";
-      this.#element.ariaLabel = this.name;
+      container.role = "group";
+      container.ariaLabel = this.name;
 
-      this.#element.innerHTML = html`
+      container.innerHTML = html`
         <!-- Here we use a min-height equal to the image height so project
              titles stay at the same height whether or not an image is present
          -->
@@ -112,18 +112,18 @@ class Project {
           </div>
         </div>
         <p>${this.description}</p>
-        <div class="project-buttons raiar-horizontal raiar-gap raiar-wrap">
+        <div class="project__buttons raiar-horizontal raiar-gap raiar-wrap">
           ${buttons}
         </div>
       `;
 
       if (this.details != null) {
         const buttonsContainer = uncheckedCast<HTMLElement>(
-          this.#element.querySelector(".project-buttons")
+          container.querySelector(".project__buttons")
         );
 
         const detailsButton = document.createElement("button");
-        detailsButton.classList.add("project-button-details");
+        detailsButton.classList.add("project__button-details");
         detailsButton.innerHTML = html`
           <span class="material-symbols-outlined" aria-hidden="true">add</span>
           Detalhes
@@ -157,6 +157,10 @@ class Project {
           buttonsContainer.firstChild
         );
       }
+
+      this.#element = document.createElement("li");
+      this.#element.classList.add("project");
+      this.#element.append(container);
     }
 
     return this.#element;
